@@ -8,6 +8,9 @@ public class MyntracloneApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyntracloneApplication.class, args);
+		
+		
+		
 	}
 
 }
