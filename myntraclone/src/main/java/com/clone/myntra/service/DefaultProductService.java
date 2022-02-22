@@ -3,6 +3,8 @@ package com.clone.myntra.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,10 +43,17 @@ public class DefaultProductService implements ProductService{
 			existingProduct.setRating(product.getRating());	
 			productRepository.save(existingProduct);
 		}
-		return existingProduct;
+		return existingProduct;		
+	}
+
+	@Override
+	public void deleteProduct(Long id) {
+		Optional<Product> optionalProduct = productRepository.findById(id);
 		
-		
-		
+		if (!optionalProduct.isPresent()) {
+			throw new RuntimeException("Product ID is not found "+ id);
+		}
+		productRepository.deleteById(id);
 	}
 	
 }

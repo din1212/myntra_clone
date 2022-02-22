@@ -12,4 +12,6 @@ public interface ProductService {
 
 	Product udpateProduct(Product product, Long id);
 
+	void deleteProduct(Long id);
+
 }
