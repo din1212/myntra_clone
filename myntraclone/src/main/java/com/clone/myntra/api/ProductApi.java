@@ -59,7 +59,7 @@ public class ProductApi {
 		
 		//  create page Request 
 		 PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
-		// call findall service method
+		// call findAll service method
 		 Page<Product> page = productService.findAll(pageRequest);
 	
 		return new ResponseEntity<>(page, HttpStatus.OK);
