@@ -38,7 +38,7 @@ public class DefaultProductService implements ProductService {
 
 		if (!optionalProduct.isPresent()) {
 
-			throw new RuntimeException("The id :"+ id + "is not present");
+			throw new RuntimeException("The record with :"+ id + " is not present");
 		}
 		Product existingProduct = optionalProduct.get();
 		existingProduct.setName(product.getName());
@@ -55,9 +55,9 @@ public class DefaultProductService implements ProductService {
 	@Override
 	public void deleteProduct(Long id) {
 		Optional<Product> optionalProduct = productRepository.findById(id);
-
 		if (!optionalProduct.isPresent()) {
-			throw new RuntimeException("Product ID is not found " + id);
+
+			throw new RuntimeException("The record with :"+ id + " is not present");
 		}
 		productRepository.deleteById(id);
 	}
