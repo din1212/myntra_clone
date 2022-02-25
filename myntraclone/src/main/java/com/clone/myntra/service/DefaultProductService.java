@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.clone.myntra.repository.ProductRepository;
 import com.clone.myntra.repository.entity.Product;
+import com.clone.myntra.service.model.ProductSearchRequestModel;
+import com.clone.myntra.service.specification.ProductSpecification;
 
 @Service
 public class DefaultProductService implements ProductService {
@@ -38,7 +40,7 @@ public class DefaultProductService implements ProductService {
 
 		if (!optionalProduct.isPresent()) {
 
-			throw new RuntimeException("The record with :"+ id + " is not present");
+			throw new RuntimeException("The record with :" + id + " is not present");
 		}
 		Product existingProduct = optionalProduct.get();
 		existingProduct.setName(product.getName());
@@ -48,7 +50,7 @@ public class DefaultProductService implements ProductService {
 		existingProduct.setQty(product.getQty());
 		existingProduct.setRating(product.getRating());
 		productRepository.save(existingProduct);
-		
+
 		return existingProduct;
 	}
 
@@ -57,7 +59,7 @@ public class DefaultProductService implements ProductService {
 		Optional<Product> optionalProduct = productRepository.findById(id);
 		if (!optionalProduct.isPresent()) {
 
-			throw new RuntimeException("The record with :"+ id + " is not present");
+			throw new RuntimeException("The record with :" + id + " is not present");
 		}
 		productRepository.deleteById(id);
 	}
@@ -65,6 +67,16 @@ public class DefaultProductService implements ProductService {
 	@Override
 	public Page<Product> findAll(PageRequest pageRequest) {
 		return productRepository.findAll(pageRequest);
+	}
+
+	@Override
+	public List<Product> search(ProductSearchRequestModel requestModel) {
+
+		ProductSpecification spec = new ProductSpecification(requestModel);
+
+		List<Product> findAll = productRepository.findAll(spec);
+
+		return findAll;
 	}
 
 }

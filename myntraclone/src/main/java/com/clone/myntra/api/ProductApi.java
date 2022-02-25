@@ -1,6 +1,7 @@
 package com.clone.myntra.api;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.clone.myntra.repository.entity.Product;
 import com.clone.myntra.service.ProductService;
+import com.clone.myntra.service.model.ProductSearchRequestModel;
 
 @RestController
 @RequestMapping("v1/product")
@@ -63,5 +65,14 @@ public class ProductApi {
 		 Page<Product> page = productService.findAll(pageRequest);
 	
 		return new ResponseEntity<>(page, HttpStatus.OK);
+	}
+	//Search
+	@GetMapping("/search/") 
+	public ResponseEntity<?> searchProducts(@RequestParam Map<String, String> requestMap) {
+		
+		ProductSearchRequestModel requestModel = new ProductSearchRequestModel(requestMap);
+	
+		List<Product> list = productService.search(requestModel);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }
