@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.clone.myntra.repository.entity.Product;
+import com.clone.myntra.repository.entity.User;
 import com.clone.myntra.service.ProductService;
+import com.clone.myntra.service.UserService;
 import com.clone.myntra.service.model.ProductSearchRequestModel;
 
 @RestController
@@ -28,6 +30,9 @@ public class ProductApi {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping("/") 
 	public ResponseEntity<?> listProducts() {
@@ -75,4 +80,13 @@ public class ProductApi {
 		List<Product> list = productService.search(requestModel);
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
+	@PostMapping("/signup")
+	public ResponseEntity<?> signUp(@RequestBody User user){
+		
+		User addedUser = userService.adduser(user);
+		
+		return new ResponseEntity<>(user, HttpStatus.CREATED);
+	}
 }
+

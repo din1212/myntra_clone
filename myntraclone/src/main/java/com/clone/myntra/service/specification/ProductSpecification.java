@@ -34,5 +34,4 @@ public class ProductSpecification implements Specification<Product> {
 		return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
 	}
 
-
 }
