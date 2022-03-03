@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class User {
 	
 	public enum Role {
-		ADMIN, GENERAl;
+		ADMIN, GENERAl, MERCHENT;
 	}
 
 	@Id
@@ -58,6 +58,11 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", role=" + role + "]";
 	}
 	
 }

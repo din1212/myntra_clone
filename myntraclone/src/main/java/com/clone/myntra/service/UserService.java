@@ -6,4 +6,6 @@ public interface UserService {
 
 	User adduser(User user);
 
+	Boolean validateUser(String userName, String password);
+
 }

@@ -25,7 +25,6 @@ public class Product {
 	@Column
 	private String category;
 	
-	
 	public Long getId() {
 		return id;
 	}
@@ -68,6 +67,4 @@ public class Product {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-	
 }
