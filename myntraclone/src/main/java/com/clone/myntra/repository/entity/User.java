@@ -6,9 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "User_table")
+@Table(name = "User_table", uniqueConstraints = {@UniqueConstraint(columnNames = {"userName"})} )
+//@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "personNumber", "isActive" }) })
 public class User {
 	
 	public enum Role {
@@ -19,7 +21,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "userName", unique = true)
+	@Column(name = "userName")
 	private String userName;
 	
 	@Column(name = "password")

@@ -25,8 +25,8 @@ public class DefaultUserService implements UserService {
 		System.out.println("Validating the userName:"+ userName +" Password::" +password);
 
 		Optional<User> user = userRepository.findByUserName(userName);
-		System.out.println("Printing the User details from DB::"+ user.get());
 		if(user.isPresent()) {
+			System.out.println("Printing the User details from DB::"+ user.get());
 			return user.get().getPassword().equals(password);
 		} else {
 			return false;

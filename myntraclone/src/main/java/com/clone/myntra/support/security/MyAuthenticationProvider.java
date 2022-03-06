@@ -31,10 +31,11 @@ public class MyAuthenticationProvider implements AuthenticationProvider{
 		if (isAuthenticated) {
 			return new UsernamePasswordAuthenticationToken(userName,password, Arrays.asList());
 		} else {
-			throw new BadCredentialsException("Invalid user Name password");
+			throw new BadCredentialsException("Invalid user Name/password");
 		}
 	}
 
+	//....??????????
 	@Override
 	public boolean supports(Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
