@@ -71,7 +71,7 @@ public class ProductApi {
 	
 		return new ResponseEntity<>(page, HttpStatus.OK);
 	}
-	//Search
+	//Search Idompotent methods
 	@GetMapping("/search/") 
 	public ResponseEntity<?> searchProducts(@RequestParam Map<String, String> requestMap) {
 		
@@ -83,10 +83,18 @@ public class ProductApi {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<?> signUp(@RequestBody User user){
-		
 		User addedUser = userService.adduser(user);
-		
 		return new ResponseEntity<>(user, HttpStatus.CREATED);
+	}
+	
+	//api for which alter the prices based on custom input
+	@PutMapping("/alter/{price}")
+	public ResponseEntity<?> alterPrices(@PathVariable Integer price){
+		
+		List<Product> alteredPrice = productService.alterData(price);
+		return new ResponseEntity<>(alteredPrice, HttpStatus.OK);
+		
+		
 	}
 	
 }

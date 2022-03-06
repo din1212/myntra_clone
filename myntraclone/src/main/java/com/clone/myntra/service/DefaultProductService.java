@@ -2,6 +2,7 @@ package com.clone.myntra.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.management.RuntimeErrorException;
 
@@ -79,4 +80,16 @@ public class DefaultProductService implements ProductService {
 		return findAll;
 	}
 
+	@Override
+	public List<Product> alterData(Integer price) {
+		List<Product> products = getProducts();
+		
+		return products.stream()
+		.map(product -> {
+			product.setPrice(product.getPrice()*price);
+			return product;
+			})
+		.filter(a -> a.getRating()> 3)
+		.collect(Collectors.toList());
+	}
 }

@@ -9,7 +9,9 @@ public class MyntracloneApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MyntracloneApplication.class, args);
 		
-		
+		//java streams
+		// completable future -> asynchronous mode
+		//
 		
 	}
 

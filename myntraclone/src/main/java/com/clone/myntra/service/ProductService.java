@@ -22,4 +22,6 @@ public interface ProductService {
 
 	List<Product> search(ProductSearchRequestModel requestModel);
 
+	List<Product> alterData(Integer price);
+
 }
